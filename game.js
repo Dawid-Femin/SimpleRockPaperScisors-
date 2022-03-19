@@ -4,6 +4,7 @@ const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
 const userChoseMessage = document.getElementById('user');
 const cpuChoseMessage = document.getElementById('cpu');
+const result = document.getElementById('result');
 const mes1 = document.getElementById('mes1');
 const mes2 = document.getElementById('mes2');
 const mes3 = document.getElementById('mes3');
@@ -17,56 +18,61 @@ let draw = 0;
 rock.addEventListener('click', () => {
     userChose = rock.id;
     cpuChose = random[Math.floor(Math.random()*3)];
-    console.log(userChose, cpuChose);
     if(userChose == 'rock' && cpuChose == 'rock'){
-        console.log('DRAW!');
+        result.textContent = 'Result: DRAW!'
         draw++;
     } else if (userChose == 'rock' && cpuChose == 'paper'){
-        console.log('CPU WIN!');
+        result.textContent = 'Result: CPU WIN!';
         cpuWin++;
     } else if (userChose == 'rock' && cpuChose == 'scissors') {
-        console.log('USER WIN!');
+        result.textContent = 'Result: USER WIN!';
         userWin++;
     }
     addPoints();
+    whatYouChose();
 });
 
 paper.addEventListener('click', () => {
     userChose = paper.id;
     cpuChose = random[Math.floor(Math.random()*3)];
-    console.log(userChose, cpuChose);
     if(userChose == 'paper' && cpuChose == 'paper'){
-        console.log('DRAW!');
+        result.textContent = 'Result: DRAW!'
         draw++;
     } else if (userChose == 'paper' && cpuChose == 'scissors'){
-        console.log('CPU WIN!');
+        result.textContent = 'Result: CPU WIN!';
         cpuWin++;
     } else if (userChose == 'paper' && cpuChose == 'rock') {
-        console.log('USER WIN!');
+        result.textContent = 'Result: USER WIN!';
         userWin++;
     }
     addPoints();
+    whatYouChose();
 });
 
 scissors.addEventListener('click', () => {
     userChose = scissors.id;
     cpuChose = random[Math.floor(Math.random()*3)];
-    console.log(userChose, cpuChose);
     if(userChose == 'scissors' && cpuChose == 'scissors'){
-        console.log('DRAW!');
+        result.textContent = 'Result: DRAW!'
         draw++;
     } else if (userChose == 'scissors' && cpuChose == 'rock'){
-        console.log('CPU WIN!');
+        result.textContent = 'Result: CPU WIN!';
         cpuWin++;
     } else if (userChose == 'scissors' && cpuChose == 'paper') {
-        console.log('USER WIN!');
+        result.textContent = 'Result: USER WIN!';
         userWin++;
     }
     addPoints();
+    whatYouChose();
 });
 
 function addPoints() {
-    mes1.textContent = `Wygrałeś już: ${userWin} razy`;
-    mes2.textContent = `Przegrałeś już: ${cpuWin} razy`;
-    mes3.textContent = `Zremisowałeś już: ${draw} razy`;
+    mes1.textContent = `Wins: ${userWin}`;
+    mes2.textContent = `Lost: ${cpuWin}`;
+    mes3.textContent = `Draws: ${draw}`;
+}
+
+function whatYouChose() {
+    user.textContent = `YOU chose: ${userChose}`;
+    cpu.textContent = `CPU chose: ${cpuChose}`;
 }
